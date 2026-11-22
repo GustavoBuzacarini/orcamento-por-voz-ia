@@ -105,3 +105,39 @@ Decisões de produto respondidas pelo cliente. Falta ainda: aprovar a versão do
 | Limite por categoria: quem define e o que acontece ao estourar | "Usuário define por voz; só avisa (Recomendado)" | idem | 2026-11-22 |
 | Retenção do áudio | "Descartar logo (Recomendado)" | idem | 2026-11-22 |
 | Um usuário ou vários com login | "Uma pessoa só (Recomendado)" | idem | 2026-11-22 |
+
+## Adendo (2026-11-22): provedor gratuito
+
+Motivo: o cliente não consegue pagar a OpenAI. Fontes consultadas em 2026-11-22; a observação vem das
+páginas, a decisão é do cliente (ADR D5).
+
+| Item | Observado | Fonte | Limite |
+|---|---|---|---|
+| URL base da Groq | `https://api.groq.com/openai/v1` (inclui `/v1`) | [Groq, speech-to-text](https://console.groq.com/docs/speech-to-text), [Spring AI, Groq](https://docs.spring.io/spring-ai/reference/2.0/api/chat/groq-chat.html) | — |
+| Modelos de chat de produção com tool use | `openai/gpt-oss-20b`, `openai/gpt-oss-120b`, `llama-3.3-70b-versatile`, `llama-3.1-8b-instant` | [Groq, modelos](https://console.groq.com/docs/models) | A página de tool use diz que todos os modelos hospedados suportam; `gpt-oss` não faz chamadas de ferramenta em paralelo (o projeto não precisa) |
+| Transcrição | `whisper-large-v3-turbo` (custo e desempenho) e `whisper-large-v3` (precisão); mp3, m4a, wav, webm, ogg, flac aceitos; 25 MB no plano gratuito | [Groq, speech-to-text](https://console.groq.com/docs/speech-to-text) | Limites de requisições do plano gratuito **não constam** nas páginas lidas |
+| Compatibilidade | "A API da Groq não é totalmente compatível com a da OpenAI"; não suporta mensagens multimodais | [Spring AI, Groq](https://docs.spring.io/spring-ai/reference/2.0/api/chat/groq-chat.html) | Esta página do Spring AI é da 2.0.0-RC2 e cita IDs de modelo antigos; usei os IDs da página de modelos da Groq |
+| Voz | Anunciada só em inglês e árabe | [Groq, anúncio](https://community.groq.com/groq-updates-2/announcements-115/index3.html) | Por isso a fala é opcional (spec AC-018) |
+| Transcrição via Spring AI | O Spring AI documenta transcrição só para OpenAI e Azure OpenAI | docs.spring.io | Usar o cliente da OpenAI contra a URL da Groq é uma suposição **ainda não testada** |
+
+Hipótese a validar com uma chave gratuita da Groq: o cliente OpenAI do Spring AI 2.0.1 funciona
+contra a Groq para chat com ferramentas e para transcrição. Se falhar, o ADR D5 deve ser revisto.
+
+### Achado em teste real (2026-11-22)
+
+Rodando a aplicação com a Groq, a primeira chamada com ferramenta falhou com `400: property
+'reasoning_content' is unsupported` ao usar `openai/gpt-oss-20b`. Interpretação: o modelo de raciocínio
+devolve `reasoning_content`, o Spring AI reenvia a mensagem do assistente com esse campo depois da
+chamada da ferramenta, e a Groq o recusa. O erro confirma a ressalva da Groq de que a API não é totalmente
+compatível com a da OpenAI. Mitigação adotada: usar um modelo que não raciocina, `llama-3.3-70b-versatile`
+(produção, com tool use segundo a página de modelos). Resultado da troca: ainda não confirmado.
+
+Resultado em teste real (2026-11-22, relato do cliente): com `openai/gpt-oss-20b` e `include_reasoning: false`
+(`AI_SEM_RACIOCINIO=true`), o comando "gastei 45 reais no mercado" por `POST /api/texto/comandos` devolveu a
+pergunta de confirmação. O `llama-3.3-70b-versatile` citado na página de modelos da Groq retornou 404 na conta do
+cliente; a lista de modelos varia por conta (`GET /openai/v1/models`). Transcrição de áudio na Groq: ainda não testada.
+
+Transcrição na Groq (2026-11-22, 1 amostra): o áudio do cliente "gastei trinta reais no transporte" (m4a, 5 s,
+Gravador de Som do Windows), enviado a `POST /api/voz/comandos` com `whisper-large-v3-turbo`, gerou a proposta
+"R$ 30,00 em transporte, hoje" com resposta em JSON (fala desligada), em cerca de 1,7 s no total. É uma única
+amostra, sem intervalo de confiança: não prova taxa de acerto. O experimento das 30 frases segue pendente.

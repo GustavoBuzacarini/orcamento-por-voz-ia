@@ -71,6 +71,18 @@
 - Arquivos: README.md, docs/exemplos-requisicoes.md, docs/experimento-30-frases.md
 - Notas: explicar o que o projeto faz, como executar, a melhoria, tecnologias, como testar, aprendizados (exigência do curso); registrar o resultado real do experimento, nunca inventado.
 
+## T-011 — Provedor de IA configurável (Groq) e fala opcional [concluida]
+
+- Refs: US-005, AC-018
+- Arquivos: src/main/resources/application.properties, src/main/java/br/com/orcamentovoz/infrastructure/http/VozController.java, src/test/java/br/com/orcamentovoz/FalaDesligadaTest.java, .env.example, README.md
+- Notas: ADR D5; URL base, chave e modelos por variável de ambiente; AC-018 prova a fala desligada; a compatibilidade real com a Groq só se prova com uma chave de teste (ASM-010).
+
+## T-012 — Proposta recusada cancela a pendência anterior [concluida]
+
+- Refs: US-002, AC-019
+- Arquivos: src/main/java/br/com/orcamentovoz/application/RegistrarGastoUseCase.java, src/test/java/br/com/orcamentovoz/PendenciaAposRecusaTest.java
+- Notas: achado em teste real (2026-11-22). A pendência é apagada antes de validar, e a transação não pode desfazer isso quando a validação falha (`noRollbackFor`).
+
 ## Documentos relacionados
 
 [PRD](prd.md) · [ADR](adr.md) · [TDD](design.md) · [Spec](spec.md) · [Pesquisa](research.md)

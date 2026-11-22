@@ -293,10 +293,10 @@
       "codigo": "Q_ABERTA",
       "feature": "orcamento-por-voz-acessivel",
       "ref": "Q-002",
-      "ocorrencias": 4,
+      "ocorrencias": 9,
       "primeiraVez": "2026-11-22T20:31:40.880Z",
-      "ultimaVez": "2026-11-22T20:32:43.059Z",
-      "gitRev": null
+      "ultimaVez": "2026-11-22T22:05:54.481Z",
+      "gitRev": "55f3e33"
     },
     "Q_ABERTA::orcamento-por-voz-acessivel::Q-003": {
       "codigo": "Q_ABERTA",
@@ -378,6 +378,15 @@
       "primeiraVez": "2026-11-22T20:31:40.880Z",
       "ultimaVez": "2026-11-22T20:31:40.880Z",
       "gitRev": null
+    },
+    "VERIFY_OBSOLETO::orcamento-por-voz-acessivel::—": {
+      "codigo": "VERIFY_OBSOLETO",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "—",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T21:48:16.698Z",
+      "ultimaVez": "2026-11-22T21:56:30.419Z",
+      "gitRev": "55f3e33"
     }
   }
 }

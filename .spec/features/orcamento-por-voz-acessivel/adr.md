@@ -77,3 +77,26 @@ substituída. Mudanças devem criar um ADR novo.
 |---|---|---|---|---|
 | Versão do Spring AI | "2.0.1 GA" | Chat | 2026-11-22 | este ADR (D1), [TDD §15](design.md#15-dependências-e-compatibilidade) |
 | D2, D3, D4 | "Revisei, pode seguir" (resposta à revisão dos documentos; o cliente não escreveu ressalvas) | Chat | 2026-11-22 | este ADR |
+| D5 | "faz com o Groq, fala opcional" | Chat | 2026-11-22 | este ADR, [spec AC-018](spec.md) |
+
+## D5 — Provedor de IA configurável e fala opcional (2026-11-22)
+
+**Contexto.** O cliente informou que não consegue pagar a OpenAI. A pesquisa ([research.md](research.md))
+mostra que a Groq tem plano gratuito e API compatível com a da OpenAI. As páginas da Groq que li dizem
+que a transcrição Whisper e o chat com Tool Calling estão disponíveis, e que a voz anunciada cobre só
+inglês e árabe. Os limites do plano gratuito não constam nas páginas lidas e devem ser conferidos no
+painel da Groq.
+
+| Opção | Benefício | Custo / risco |
+|---|---|---|
+| Provedor por configuração (URL base, chave e modelos por variável de ambiente) + fala opcional (escolhida) | Mesmo código para OpenAI e Groq; custo zero para o cliente | Sem voz em português no modo gratuito; a Groq pode ter incompatibilidades com a API da OpenAI |
+| Manter só OpenAI | Voz em português | Cliente não consegue pagar |
+| Ollama local | Gratuito | O Spring AI não tem transcrição nem fala via Ollama; exigiria montar um Whisper local |
+
+**Decisão.** Aceita pelo cliente: "faz com o Groq, fala opcional" (chat, 2026-11-22). A URL base, a chave e
+os modelos vêm de variáveis de ambiente. Com `app.fala.habilitada=false`, o endpoint de voz devolve JSON
+com o texto, em vez de mp3 (spec AC-018). O AC-013 continua valendo com a fala ligada (padrão).
+
+**Consequências.** O experimento das 30 frases deve ser feito com o modelo escolhido; a compatibilidade
+real com a Groq só se confirma com uma chave de teste. Nada foi enfraquecido: os critérios AC-001 a AC-017
+seguem iguais.

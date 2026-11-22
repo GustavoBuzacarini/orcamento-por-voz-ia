@@ -76,6 +76,14 @@ orçamento não seja contaminado por um erro de interpretação da IA.
 - **Então** a resposta explica que não dá para registrar gasto em data futura
 - **E** nenhum gasto fica pendente nem é gravado
 
+
+#### AC-019 — Uma proposta recusada cancela o gasto pendente anterior
+
+- **Dado** um gasto pendente de R$ 45,00 em mercado
+- **Quando** a pessoa pede um gasto inválido (por exemplo, valor zero) e depois diz "sim"
+- **Então** a resposta ao "sim" avisa que não há gasto para confirmar
+- **E** o gasto de R$ 45,00 não foi gravado (um erro nunca deixa uma confirmação antiga valendo)
+
 ### US-003 — Limites por categoria com aviso
 
 Como pessoa que quer evitar apertos no fim do mês, quero definir limites por categoria e ser
@@ -145,6 +153,14 @@ usar o assistente com leitor de tela ou sem microfone.
 - **Então** recebe a mesma pergunta de confirmação, em texto
 - **E** nenhum áudio é gerado
 
+
+#### AC-018 — Com a fala desligada, a resposta de voz vem em texto
+
+- **Dado** que a fala está desligada na configuração (`app.fala.habilitada=false`)
+- **Quando** a pessoa envia um comando de voz válido
+- **Então** a resposta é um JSON com o texto da resposta, que um leitor de tela consegue ler
+- **E** nenhuma geração de áudio é feita
+
 ### US-006 — Privacidade do áudio
 
 Como pessoa usuária, quero que meu áudio seja apagado depois de entendido, para que minha voz
@@ -173,6 +189,7 @@ nada foi gravado e que posso tentar de novo.
 
 - Login e vários usuários. Receitas. Editar ou apagar gastos. Bloquear gasto acima do limite.
 - Front-end ou app. Recomendações de investimento ou crédito.
+- Gerar voz em português com um provedor gratuito.
 - Medir a qualidade da interpretação do modelo como critério automático (vira experimento
   manual, ASM-007).
 
@@ -189,6 +206,7 @@ nada foi gravado e que posso tentar de novo.
 | ASM-007 | A qualidade da interpretação do modelo não é critério automático; é medida no experimento de 30 frases | confirmada | Cliente: "Confirmo todas (Recomendado)" (AskUserQuestion), 2026-11-22 |
 | ASM-008 | Java 25 e Spring Boot 4.1.1 funcionam com Spring AI 2.0.1 | confirmada | Build e 19 testes passaram com Java 25, Boot 4.1.1 e Spring AI 2.0.1 em 2026-11-22 |
 | ASM-009 | A pessoa usa a própria chave da OpenAI e paga o consumo | confirmada | Cliente: "Confirmo todas (Recomendado)" (AskUserQuestion), 2026-11-22 |
+| ASM-010 | O provedor gratuito (Groq) atende chat com ferramentas e transcrição em português; ele não gera voz em português, então a fala fica desligada nesse modo. Limites do plano gratuito a conferir no painel da Groq | aberta | — |
 
 ## Perguntas em aberto
 

@@ -1,11 +1,11 @@
 {
   "feature": "orcamento-por-voz-acessivel",
-  "timestamp": "2026-11-22T20:32:09.237Z",
-  "gitRev": null,
+  "timestamp": "2026-11-22T22:05:53.819Z",
+  "gitRev": "55f3e33",
   "command": "node tools/run-gradle-tests.mjs",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 19,
+  "testsParsed": 22,
   "results": {
     "AC-001": {
       "status": "pass",
@@ -40,6 +40,11 @@
     "AC-007": {
       "status": "pass",
       "testName": "@spec:AC-007 Data no futuro é recusada",
+      "method": "jest-json"
+    },
+    "AC-019": {
+      "status": "pass",
+      "testName": "@spec:AC-019 Uma proposta recusada cancela o gasto pendente anterior",
       "method": "jest-json"
     },
     "AC-008": {
@@ -80,6 +85,11 @@
     "AC-017": {
       "status": "pass",
       "testName": "@spec:AC-017 O mesmo comando pode ser enviado por texto",
+      "method": "jest-json"
+    },
+    "AC-018": {
+      "status": "pass",
+      "testName": "@spec:AC-018 Com a fala desligada, a resposta de voz vem em texto",
       "method": "jest-json"
     },
     "AC-015": {

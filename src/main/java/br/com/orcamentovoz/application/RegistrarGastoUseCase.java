@@ -36,13 +36,19 @@ public class RegistrarGastoUseCase {
         this.minutosDeValidade = minutosDeValidade;
     }
 
-    @Transactional
+    /**
+     * Qualquer nova proposta, válida ou não, cancela a pendência anterior (AC-019): depois de ouvir um erro,
+     * um "sim" por hábito não pode confirmar um gasto antigo. Por isso o {@code noRollbackFor}: a validação
+     * lança exceção, e sem ele a transação desfaria a exclusão.
+     */
+    @Transactional(noRollbackFor = RegraDeGastoException.class)
     public String propor(BigDecimal valor, String categoriaTexto, String descricao, String dataTexto) {
+        pendentes.deleteAll();
+
         BigDecimal valorValido = validador.validarValor(valor);
         Categoria categoria = validador.validarCategoria(categoriaTexto);
         LocalDate data = validador.validarData(interpretarData(dataTexto));
 
-        pendentes.deleteAll();
         pendentes.save(new GastoPendente(valorValido, categoria, descricao, data,
                 calendario.agora().plus(minutosDeValidade, ChronoUnit.MINUTES)));
 

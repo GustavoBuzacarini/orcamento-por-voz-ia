@@ -85,5 +85,6 @@ Alternativas propostas pela pesquisa e não escolhidas pelo cliente continuam fo
 | Áudio após transcrição | descartar / guardar | "Descartar logo (Recomendado)" | idem | 2026-11-22 |
 | Usuários | uma pessoa / vários | "Uma pessoa só (Recomendado)" | idem | 2026-11-22 |
 | Versão do Spring AI | 2.0.1 GA / 2.0.0-M4 | "2.0.1 GA" | resposta no chat | 2026-11-22 |
+| Provedor de IA | Groq (gratuito) ou OpenAI | "faz com o Groq, fala opcional" | resposta no chat | 2026-11-22 |
 
 Revisado pelo cliente em 2026-11-22: "Revisei, pode seguir" (resposta no chat).

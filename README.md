@@ -39,29 +39,42 @@ O projeto do curso registra gastos direto. Aqui foram acrescentados:
   verificados pelo código, nunca pelo prompt. A IA interpreta, o código decide.
 - **Limites mensais por categoria**, definidos por voz. O limite só avisa; nunca bloqueia.
 - **Novas consultas**: total por categoria e resumo do mês.
-- **Resposta acessível**: sempre em áudio (`audio/mpeg`) e com o mesmo texto no cabeçalho
-  `X-Resposta-Texto` (percent-encoded em UTF-8), para leitores de tela.
+- **Resposta acessível**: em áudio (`audio/mpeg`) com o mesmo texto no cabeçalho `X-Resposta-Texto`
+  (percent-encoded em UTF-8), para leitores de tela. A fala é opcional (`FALA_HABILITADA=false`): sem ela,
+  a resposta vem em JSON com o texto. Isso permite usar um provedor gratuito que não gera voz em português.
 - **Privacidade**: o áudio é processado em memória e descartado. O banco guarda só valores,
   categorias e datas.
 - **Endpoint equivalente por texto**, para usar sem microfone.
 - **Falhas da IA tratadas**: se a OpenAI estiver fora do ar, a API responde 503 com uma mensagem
   clara e nada é gravado.
 
-A especificação completa (PRD, ADR, TDD, spec com 17 critérios de aceite e pesquisa) está em
+A especificação completa (PRD, ADR, TDD, spec com 19 critérios de aceite e pesquisa) está em
 [`.spec/features/orcamento-por-voz-acessivel`](.spec/features/orcamento-por-voz-acessivel).
 
 ## Tecnologias
 
-Java 25 · Spring Boot 4.1 · Spring AI 2.0.1 (ChatClient, `@Tool`, transcrição e fala) · OpenAI
-(`gpt-4o-mini`, `whisper-1`, `gpt-4o-mini-tts`) · Spring Data JPA · MySQL 9 (Docker) · H2 nos testes ·
-Gradle · JUnit 5 e MockMvc.
+Java 25 · Spring Boot 4.1 · Spring AI 2.0.1 (ChatClient, `@Tool`, transcrição e fala) · Groq
+(gratuito) ou OpenAI (`gpt-4o-mini`, `whisper-1`, `gpt-4o-mini-tts`) · Spring Data JPA · MySQL 9 (Docker) ·
+H2 nos testes · Gradle · JUnit 5 e MockMvc.
 
 ## Como executar
 
-Pré-requisitos: JDK 25, Docker e uma chave da OpenAI (o uso é cobrado na sua conta).
+Pré-requisitos: JDK 25, Docker e uma chave de um provedor de IA compatível com a API da OpenAI.
 
-1. Copie `.env.example` para `.env` e preencha `OPENAI_API_KEY`, `MYSQL_PASSWORD` e
-   `MYSQL_ROOT_PASSWORD`. O `.env` não vai para o Git.
+**Provedores** (escolha no `.env`, sem mudar o código):
+
+| | Groq (gratuito) | OpenAI (pago) |
+|---|---|---|
+| Chat com ferramentas | sim | sim |
+| Transcrição | sim (Whisper) | sim |
+| Resposta falada em português | **não** (a fala fica desligada e a resposta vem em texto) | sim |
+
+A Groq tem plano gratuito, com limites que você confere no painel dela. Veja a decisão em
+[ADR D5](.spec/features/orcamento-por-voz-acessivel/adr.md). O uso com a Groq depende de ela aceitar o
+cliente da OpenAI do Spring AI; isso foi documentado, mas só se confirma rodando com uma chave.
+
+1. Copie `.env.example` para `.env`, escolha o bloco do provedor (Groq vem ligado) e preencha
+   `AI_API_KEY`, `MYSQL_PASSWORD` e `MYSQL_ROOT_PASSWORD`. O `.env` não vai para o Git.
 2. Suba o MySQL:
 
    ```powershell
@@ -89,7 +102,7 @@ determinísticas, então não custa nada e não usa a rede:
 ./gradlew.bat test
 ```
 
-Para ver os 17 critérios da spec com prova:
+Para ver os 19 critérios da spec com prova:
 
 ```powershell
 node .claude/skills/onp-spec-driven/scripts/onp-spec.mjs verify orcamento-por-voz-acessivel
@@ -98,16 +111,17 @@ node .claude/skills/onp-spec-driven/scripts/onp-spec.mjs verify orcamento-por-vo
 Com a chave configurada e a aplicação rodando, teste pelo texto:
 
 ```powershell
-curl.exe -X POST http://localhost:8080/api/texto/comandos -H "Content-Type: application/json" -d '{\"texto\":\"gastei 45 reais no mercado\"}'
+Invoke-RestMethod -Method Post -Uri http://localhost:8080/api/texto/comandos -ContentType "application/json; charset=utf-8" -Body ([Text.Encoding]::UTF8.GetBytes('{"texto":"gastei 45 reais no mercado"}'))
 ```
 
-E pela voz, enviando um arquivo de áudio seu (grave "gastei 45 reais no mercado" em `comando.mp3`):
+E pela voz, enviando um arquivo de áudio seu (grave "gastei 45 reais no mercado" em `comando.m4a`):
 
 ```powershell
-curl.exe -X POST http://localhost:8080/api/voz/comandos -F "audio=@comando.mp3" -D - -o resposta.mp3
+curl.exe -X POST http://localhost:8080/api/voz/comandos -F "audio=@comando.m4a" -D -
 ```
 
-O cabeçalho `X-Resposta-Texto` traz o texto, e `resposta.mp3` é a resposta falada. Mais exemplos em
+Com a fala ligada, a resposta é um mp3 (use `-o resposta.mp3`) e o cabeçalho `X-Resposta-Texto` traz o
+mesmo texto. Com a fala desligada (Groq), a resposta é um JSON com o texto. Mais exemplos em
 [`docs/exemplos-requisicoes.md`](docs/exemplos-requisicoes.md).
 
 ### Endpoints
@@ -120,7 +134,7 @@ O cabeçalho `X-Resposta-Texto` traz o texto, e `resposta.mp3` é a resposta fal
 
 ## O que os testes provam, e o que não provam
 
-Os 17 critérios provam as **regras do nosso código**: confirmar antes de gravar, recusar valores
+Os 19 critérios provam as **regras do nosso código**: confirmar antes de gravar, recusar valores
 inválidos, avisar do limite, não guardar áudio e tratar falhas. Eles **não provam** que o modelo
 entende bem o seu português: para isso há um experimento manual de 30 frases, descrito em
 [`docs/experimento-30-frases.md`](docs/experimento-30-frases.md). Ele ainda não foi executado.
