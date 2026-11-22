@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "large": true,
+  "documentationContract": "onp-docs-v1",
+  "domains": [],
+  "clientRequest": "vamos com essa ideia da 1 e um pouco da 3 (1: Orçamento por voz acessível; 3: Educação financeira e prevenção de endividamento), repositorio novo",
+  "review": {
+    "summary": "Repositório novo: o único contrato anterior é a constituição (P-001 a P-003). Não há PRD, ADR ou spec de outro domínio, e o projeto de agendamento-consultas não compartilha dados nem código. A proposta respeita P-002 (sem segredos) e implementa P-003 (a IA interpreta, o código decide). O glob de P-002 foi ajustado de .js para .java no preset inicial, sem enfraquecer a regra.",
+    "reviewer": "Claude Code (sessão orcamento-por-voz-ia, 2026-11-22)",
+    "conflicts": [],
+    "fingerprint": "5139dd27cef3eaad41ecf72a7f79c48e378232c38c51885417b3e1cc92b1f632",
+    "ownFingerprint": "5139dd27cef3eaad41ecf72a7f79c48e378232c38c51885417b3e1cc92b1f632",
+    "reviewedAt": "2026-11-22T20:32:42.736Z",
+    "documents": [
+      ".spec/features/orcamento-por-voz-acessivel/prd.md",
+      ".spec/features/orcamento-por-voz-acessivel/adr.md",
+      ".spec/features/orcamento-por-voz-acessivel/design.md",
+      ".spec/features/orcamento-por-voz-acessivel/spec.md",
+      ".spec/features/orcamento-por-voz-acessivel/tasks.md",
+      ".spec/features/orcamento-por-voz-acessivel/research.md",
+      ".spec/constituicao.md",
+      "onpspec.config.json"
+    ]
+  },
+  "decisions": []
+}

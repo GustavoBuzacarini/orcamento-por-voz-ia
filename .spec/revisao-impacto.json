@@ -1,0 +1,5 @@
+{
+  "summary": "Repositório novo: o único contrato anterior é a constituição (P-001 a P-003). Não há PRD, ADR ou spec de outro domínio, e o projeto de agendamento-consultas não compartilha dados nem código. A proposta respeita P-002 (sem segredos) e implementa P-003 (a IA interpreta, o código decide). O glob de P-002 foi ajustado de .js para .java no preset inicial, sem enfraquecer a regra.",
+  "reviewer": "Claude Code (sessão orcamento-por-voz-ia, 2026-11-22)",
+  "conflicts": []
+}

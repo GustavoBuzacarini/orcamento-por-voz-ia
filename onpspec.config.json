@@ -1,0 +1,11 @@
+{
+  "testCommand": "node tools/run-gradle-tests.mjs",
+  "reporter": "jest-json",
+  "reporterOutputFile": ".spec/verification/raw.json",
+  "testGlobs": [
+    "src/test/**"
+  ],
+  "srcGlobs": [
+    "src/main/**"
+  ]
+}

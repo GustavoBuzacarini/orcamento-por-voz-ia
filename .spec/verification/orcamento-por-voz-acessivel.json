@@ -1,0 +1,102 @@
+{
+  "feature": "orcamento-por-voz-acessivel",
+  "timestamp": "2026-11-22T20:32:09.237Z",
+  "gitRev": null,
+  "command": "node tools/run-gradle-tests.mjs",
+  "reporter": "jest-json",
+  "exitCode": 0,
+  "testsParsed": 19,
+  "results": {
+    "AC-001": {
+      "status": "pass",
+      "testName": "@spec:AC-001 O gasto falado é repetido para confirmação e ainda não é gravado",
+      "method": "jest-json"
+    },
+    "AC-002": {
+      "status": "pass",
+      "testName": "@spec:AC-002 Dizer sim grava o gasto",
+      "method": "jest-json"
+    },
+    "AC-003": {
+      "status": "pass",
+      "testName": "@spec:AC-003 Dizer não descarta o gasto pendente",
+      "method": "jest-json"
+    },
+    "AC-004": {
+      "status": "pass",
+      "testName": "@spec:AC-004 Confirmar depois de muito tempo não grava nada",
+      "method": "jest-json"
+    },
+    "AC-005": {
+      "status": "pass",
+      "testName": "@spec:AC-005 Valor zero ou negativo é recusado",
+      "method": "jest-json"
+    },
+    "AC-006": {
+      "status": "pass",
+      "testName": "@spec:AC-006 Categoria desconhecida é recusada com as opções",
+      "method": "jest-json"
+    },
+    "AC-007": {
+      "status": "pass",
+      "testName": "@spec:AC-007 Data no futuro é recusada",
+      "method": "jest-json"
+    },
+    "AC-008": {
+      "status": "pass",
+      "testName": "@spec:AC-008 Definir um limite mensal por voz",
+      "method": "jest-json"
+    },
+    "AC-009": {
+      "status": "pass",
+      "testName": "@spec:AC-009 Gasto que ultrapassa o limite é gravado e a pessoa é avisada",
+      "method": "jest-json"
+    },
+    "AC-010": {
+      "status": "pass",
+      "testName": "@spec:AC-010 Gasto dentro do limite informa quanto ainda resta",
+      "method": "jest-json"
+    },
+    "AC-011": {
+      "status": "pass",
+      "testName": "@spec:AC-011 Total por categoria no mês",
+      "method": "jest-json"
+    },
+    "AC-012": {
+      "status": "pass",
+      "testName": "@spec:AC-012 Resumo do mês com categorias acima do limite",
+      "method": "jest-json"
+    },
+    "AC-013": {
+      "status": "pass",
+      "testName": "@spec:AC-013 Toda resposta de voz volta em áudio e com o texto equivalente",
+      "method": "jest-json"
+    },
+    "AC-014": {
+      "status": "pass",
+      "testName": "@spec:AC-014 Áudio que não foi entendido pede para repetir",
+      "method": "jest-json"
+    },
+    "AC-017": {
+      "status": "pass",
+      "testName": "@spec:AC-017 O mesmo comando pode ser enviado por texto",
+      "method": "jest-json"
+    },
+    "AC-015": {
+      "status": "pass",
+      "testName": "@spec:AC-015 O áudio não fica guardado",
+      "method": "jest-json"
+    },
+    "AC-016": {
+      "status": "pass",
+      "testName": "@spec:AC-016 Falha da IA devolve aviso claro e não grava nada",
+      "method": "jest-json"
+    }
+  },
+  "principles": {
+    "P-003": {
+      "status": "pass",
+      "testName": "@principle:P-003 O código decide: valores inválidos vindos do modelo nunca chegam ao banco"
+    }
+  }
+}

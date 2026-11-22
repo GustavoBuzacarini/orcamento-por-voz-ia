@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: mysql:9.6
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-orcamento}
+      MYSQL_USER: ${MYSQL_USER:-app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?defina MYSQL_PASSWORD no .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?defina MYSQL_ROOT_PASSWORD no .env}
+    ports:
+      - "3307:3306"
+    volumes:
+      - orcamento_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 10
+volumes:
+  orcamento_data:

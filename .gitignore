@@ -1,0 +1,7 @@
+*.iml
+.env
+.gradle/
+.idea/
+.spec/verification/raw.json
+build/
+out/

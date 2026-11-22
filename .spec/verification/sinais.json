@@ -1,0 +1,383 @@
+{
+  "schema": 1,
+  "sinais": {
+    "DOCUMENTO_RASCUNHO::orcamento-por-voz-acessivel::.spec\\features\\orcamento-por-voz-acessivel\\governance.json": {
+      "codigo": "DOCUMENTO_RASCUNHO",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": ".spec\\features\\orcamento-por-voz-acessivel\\governance.json",
+      "ocorrencias": 8,
+      "primeiraVez": "2026-11-22T20:21:35.499Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "REVISAO_IMPACTO_PENDENTE::orcamento-por-voz-acessivel::.spec\\features\\orcamento-por-voz-acessivel\\governance.json": {
+      "codigo": "REVISAO_IMPACTO_PENDENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": ".spec\\features\\orcamento-por-voz-acessivel\\governance.json",
+      "ocorrencias": 3,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:31:48.178Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-001": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-001",
+      "ocorrencias": 22,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-002": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-002",
+      "ocorrencias": 10,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-003": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-003",
+      "ocorrencias": 6,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-004": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-004",
+      "ocorrencias": 4,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-005": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-005",
+      "ocorrencias": 4,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-006": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-006",
+      "ocorrencias": 4,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-007": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-007",
+      "ocorrencias": 10,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-008": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-008",
+      "ocorrencias": 8,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-009": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-009",
+      "ocorrencias": 4,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::orcamento-por-voz-acessivel::T-010": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "T-010",
+      "ocorrencias": 6,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-001": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-001",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-002": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-002",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-003": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-003",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-004": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-004",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-005": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-005",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-006": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-006",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-007": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-007",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-008": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-008",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-009": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-009",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-010": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-010",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-011": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-011",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-012": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-012",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-013": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-013",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-014": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-014",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-017": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-017",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-015": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-015",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::orcamento-por-voz-acessivel::AC-016": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "AC-016",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "GLOB_SEM_ARQUIVOS::—::P-002": {
+      "codigo": "GLOB_SEM_ARQUIVOS",
+      "feature": "—",
+      "ref": "P-002",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "PRINCIPIO_VIOLADO::—::P-003": {
+      "codigo": "PRINCIPIO_VIOLADO",
+      "feature": "—",
+      "ref": "P-003",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-22T20:21:35.500Z",
+      "ultimaVez": "2026-11-22T20:21:40.006Z",
+      "gitRev": null
+    },
+    "Q_ABERTA::orcamento-por-voz-acessivel::Q-001": {
+      "codigo": "Q_ABERTA",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "Q-001",
+      "ocorrencias": 3,
+      "primeiraVez": "2026-11-22T20:31:40.879Z",
+      "ultimaVez": "2026-11-22T20:32:09.828Z",
+      "gitRev": null
+    },
+    "Q_ABERTA::orcamento-por-voz-acessivel::Q-002": {
+      "codigo": "Q_ABERTA",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "Q-002",
+      "ocorrencias": 4,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:32:43.059Z",
+      "gitRev": null
+    },
+    "Q_ABERTA::orcamento-por-voz-acessivel::Q-003": {
+      "codigo": "Q_ABERTA",
+      "feature": "orcamento-por-voz-acessivel",
+      "ref": "Q-003",
+      "ocorrencias": 3,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:32:09.829Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/application/AssistenteIndisponivelException.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/application/AssistenteIndisponivelException.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/application/Calendario.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/application/Calendario.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/application/Moeda.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/application/Moeda.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/application/Sintetizador.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/application/Sintetizador.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/application/Transcritor.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/application/Transcritor.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/config/RelogioConfig.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/config/RelogioConfig.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/domain/RegraDeGastoException.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/domain/RegraDeGastoException.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    },
+    "ARQUIVO_ORFAO::—::src/main/java/br/com/orcamentovoz/infrastructure/http/ComandoInvalidoException.java": {
+      "codigo": "ARQUIVO_ORFAO",
+      "feature": "—",
+      "ref": "src/main/java/br/com/orcamentovoz/infrastructure/http/ComandoInvalidoException.java",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-22T20:31:40.880Z",
+      "ultimaVez": "2026-11-22T20:31:40.880Z",
+      "gitRev": null
+    }
+  }
+}
