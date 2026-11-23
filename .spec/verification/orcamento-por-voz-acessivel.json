@@ -1,6 +1,6 @@
 {
   "feature": "orcamento-por-voz-acessivel",
-  "timestamp": "2026-11-23T00:01:09.646Z",
+  "timestamp": "2026-11-23T00:04:19.319Z",
   "gitRev": "99b2608",
   "command": "node tools/run-gradle-tests.mjs",
   "reporter": "jest-json",

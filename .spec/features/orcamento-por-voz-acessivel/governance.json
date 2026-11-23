@@ -8,9 +8,9 @@
     "summary": "Repositório novo: o único contrato anterior é a constituição (P-001 a P-003). Não há PRD, ADR ou spec de outro domínio, e o projeto de agendamento-consultas não compartilha dados nem código. A proposta respeita P-002 (sem segredos) e implementa P-003 (a IA interpreta, o código decide). O glob de P-002 foi ajustado de .js para .java no preset inicial, sem enfraquecer a regra.",
     "reviewer": "Claude Code (sessão orcamento-por-voz-ia, 2026-11-22)",
     "conflicts": [],
-    "fingerprint": "168c0772626b222dab624e7dcd4149c2f6fdb323751cb1c442b52ff23fae071c",
-    "ownFingerprint": "168c0772626b222dab624e7dcd4149c2f6fdb323751cb1c442b52ff23fae071c",
-    "reviewedAt": "2026-11-23T00:04:01.452Z",
+    "fingerprint": "6bb75e76643aa2d3315670841930ba2316510c2aecfdba65cf4190d9bbeb1a0a",
+    "ownFingerprint": "6bb75e76643aa2d3315670841930ba2316510c2aecfdba65cf4190d9bbeb1a0a",
+    "reviewedAt": "2026-11-23T00:04:24.013Z",
     "documents": [
       ".spec/features/orcamento-por-voz-acessivel/prd.md",
       ".spec/features/orcamento-por-voz-acessivel/adr.md",

@@ -3,7 +3,7 @@
 # Spec: Orcamento por voz acessivel
 
 > feature: orcamento-por-voz-acessivel
-> status: implementada
+> status: auditada
 
 ## Contexto
 
