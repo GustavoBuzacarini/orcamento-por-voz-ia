@@ -27,12 +27,19 @@ public enum Categoria {
         return rotulo;
     }
 
-    /** Aceita o rótulo falado ("alimentação fora", "Saude") ou o nome do enum, sem acento e sem caixa. */
+    /**
+     * Aceita o rótulo falado ("alimentação fora", "Saude") ou o nome do enum, sem acento e sem caixa.
+     * Única tolerância extra: "outra" e "outras" valem "outros" (um modelo de linguagem concorda o gênero
+     * com a palavra "categoria"). As demais categorias não têm sinônimos.
+     */
     public static Optional<Categoria> deTexto(String texto) {
         if (texto == null || texto.isBlank()) {
             return Optional.empty();
         }
         String alvo = normalizar(texto);
+        if (alvo.equals("outra") || alvo.equals("outras")) {
+            return Optional.of(OUTROS);
+        }
         return Arrays.stream(values())
                 .filter(c -> normalizar(c.rotulo).equals(alvo) || normalizar(c.name()).equals(alvo))
                 .findFirst();

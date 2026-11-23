@@ -48,7 +48,7 @@ O projeto do curso registra gastos direto. Aqui foram acrescentados:
 - **Falhas da IA tratadas**: se a OpenAI estiver fora do ar, a API responde 503 com uma mensagem
   clara e nada é gravado.
 
-A especificação completa (PRD, ADR, TDD, spec com 19 critérios de aceite e pesquisa) está em
+A especificação completa (PRD, ADR, TDD, spec com 21 critérios de aceite e pesquisa) está em
 [`.spec/features/orcamento-por-voz-acessivel`](.spec/features/orcamento-por-voz-acessivel).
 
 ## Tecnologias
@@ -102,7 +102,7 @@ determinísticas, então não custa nada e não usa a rede:
 ./gradlew.bat test
 ```
 
-Para ver os 19 critérios da spec com prova:
+Para ver os 21 critérios da spec com prova:
 
 ```powershell
 node .claude/skills/onp-spec-driven/scripts/onp-spec.mjs verify orcamento-por-voz-acessivel
@@ -134,23 +134,63 @@ mesmo texto. Com a fala desligada (Groq), a resposta é um JSON com o texto. Mai
 
 ## O que os testes provam, e o que não provam
 
-Os 19 critérios provam as **regras do nosso código**: confirmar antes de gravar, recusar valores
+Os 21 critérios provam as **regras do nosso código**: confirmar antes de gravar, recusar valores
 inválidos, avisar do limite, não guardar áudio e tratar falhas. Eles **não provam** que o modelo
-entende bem o seu português: para isso há um experimento manual de 30 frases, descrito em
-[`docs/experimento-30-frases.md`](docs/experimento-30-frases.md). Ele ainda não foi executado.
+entende bem o seu português: para isso há um experimento de 30 frases, descrito em
+[`docs/experimento-30-frases.md`](docs/experimento-30-frases.md), com um script (`tools/rodar-experimento.ps1`).
+
+Resultados (Groq, `openai/gpt-oss-20b` e `whisper-large-v3-turbo`, valor e categoria corretos):
+
+| Rodada | Acertos | Intervalo de Wilson 95% | Latência p50 / p95 |
+|---|---|---|---|
+| Texto (sem transcrição), 30 frases | 29 / 30 (97%) | 83% a 99% | 2,7 s / 9,7 s |
+| Voz, 29 áudios gravados pelo autor | 28 / 29 (97%) | 83% a 99% | 1,2 s / 7,9 s |
+
+Limites honestos: uma só voz, um só microfone, ambiente silencioso, frases lidas de uma lista e uma rodada
+de cada. Na voz, o único erro foi "duzentos e cinquenta" lido como R$ 200,50; a confirmação por voz diria o
+valor antes de gravar. Relatórios completos em [`docs/`](docs).
 
 ## O que aprendi
 
-> Rascunho a ser revisado por quem fez o desafio. Ajuste com as suas palavras.
+Achei muito interessante, e diferente do que eu esperava, a forma como tratei as regras de negócio. Isso me
+fez raciocinar mais a fundo e pensar no bom desempenho e na confiabilidade do projeto: em vez de deixar a IA
+decidir tudo, deixei que ela apenas **entenda o pedido**, e é o código que valida valor, categoria, data e
+limite. A IA interpreta, o código decide.
 
-- Tool Calling funciona melhor com ferramentas finas: a ferramenta só repassa para um caso de uso,
-  e a regra mora no código, onde dá para testar sem IA.
-- Colocar a IA atrás de uma interface (`AssistenteFinanceiro`) permite testar tudo de forma
-  determinística, sem chave e sem custo.
-- A versão do curso usa uma versão de testes (milestone) do Spring AI; existe versão final, e as
-  propriedades e builders mudaram entre elas.
-- Acessibilidade muda o desenho: confirmar por voz e devolver o texto junto do áudio não são
-  detalhes, são requisitos.
+Também foi incrível ver a IA com voz funcionando de verdade: eu falo uma frase, ela é transcrita, entendida,
+validada e respondida. Além de reforçar os fundamentos de Java e Spring Boot que o curso ensina, aprendi a
+usar a IA como aceleradora do trabalho sem abrir mão do cuidado com o projeto: eu orientei o assistente de
+IA e validei tudo com testes automáticos e com o experimento de frases.
+
+Para saber se funcionava de verdade, testei dezenas de frases: 30 por texto e 29 por voz, com a minha própria
+voz. O resultado foi de 97% de acertos em valor e categoria nas duas rodadas (veja a tabela acima, com os
+limites dessa medida).
+
+### Dificuldades que enfrentei e resolvi
+- **Docker e portas:** eram coisas novas para mim. A porta 8080 estava ocupada pelo banco Oracle, então rodei
+  a aplicação na 8081.
+- **Provedor de IA:** tive erros de autenticação (a chave de um provedor enviada para outro), de modelo que
+  não existia na minha conta e de incompatibilidade com o modelo de raciocínio. Aprendi a ler o erro no log
+  e a corrigir pela configuração.
+- **Um defeito que só o experimento mostrou:** às vezes a IA reescrevia a pergunta de confirmação sem dizer o
+  valor. Passei a deixar o código montar essa frase, e o teste mostrou que a pergunta sempre traz valor e
+  categoria.
+
+No começo foi difícil, o que é normal quando tudo é novo, mas tudo foi resolvido.
+
+### Lições técnicas
+- Tool Calling funciona melhor com ferramentas finas: a ferramenta só repassa para um caso de uso, e a regra
+  mora no código, onde dá para testar sem IA.
+- Colocar a IA atrás de uma interface (`AssistenteFinanceiro`) permite testar tudo de forma determinística,
+  sem chave e sem custo.
+- Teste automático com IA falsa não substitui o teste com a IA real: foi o experimento que achou o defeito
+  da confirmação sem valor.
+- A versão do curso usa uma versão de testes (milestone) do Spring AI; existe versão final, e as propriedades
+  e builders mudaram entre elas.
+- Acessibilidade muda o desenho: confirmar por voz e devolver o texto junto do áudio não são detalhes, são
+  requisitos.
+
+Fiquei muito feliz com o resultado e totalmente satisfeito com o que construí.
 
 ## Estrutura
 

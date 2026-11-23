@@ -1,11 +1,11 @@
 {
   "feature": "orcamento-por-voz-acessivel",
-  "timestamp": "2026-11-22T22:05:53.819Z",
-  "gitRev": "55f3e33",
+  "timestamp": "2026-11-23T00:01:09.646Z",
+  "gitRev": "99b2608",
   "command": "node tools/run-gradle-tests.mjs",
   "reporter": "jest-json",
   "exitCode": 0,
-  "testsParsed": 22,
+  "testsParsed": 26,
   "results": {
     "AC-001": {
       "status": "pass",
@@ -27,6 +27,11 @@
       "testName": "@spec:AC-004 Confirmar depois de muito tempo não grava nada",
       "method": "jest-json"
     },
+    "AC-020": {
+      "status": "pass",
+      "testName": "@spec:AC-020 A frase de confirmação é montada pelo código, não pela IA",
+      "method": "jest-json"
+    },
     "AC-005": {
       "status": "pass",
       "testName": "@spec:AC-005 Valor zero ou negativo é recusado",
@@ -45,6 +50,11 @@
     "AC-019": {
       "status": "pass",
       "testName": "@spec:AC-019 Uma proposta recusada cancela o gasto pendente anterior",
+      "method": "jest-json"
+    },
+    "AC-021": {
+      "status": "pass",
+      "testName": "@spec:AC-021 Outra e outras são aceitos como a categoria outros",
       "method": "jest-json"
     },
     "AC-008": {

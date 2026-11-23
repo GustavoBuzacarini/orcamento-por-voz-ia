@@ -1,0 +1,31 @@
+id;frase;valor_esperado;categoria_esperada
+1;gastei 45 reais no mercado;45;mercado
+2;paguei 12 reais e 90 de ônibus;12.90;transporte
+3;comprei remédio por trinta e cinco reais;35;saúde
+4;gastei quarenta e cinco reais com lazer;45;lazer
+5;almocei fora e paguei 28 reais;28;alimentação fora
+6;paguei a conta de luz de 180 reais;180;moradia
+7;gastei 14 reais de uber;14;transporte
+8;paguei a mensalidade do curso de 350 reais;350;educação
+9;gastei sessenta reais no cinema;60;lazer
+10;gastei setenta reais no mercado;70;mercado
+11;comprei pão e leite por 18 reais e 50;18.50;mercado
+12;paguei 250 reais de aluguel;250;moradia
+13;gastei 90 reais na farmácia;90;saúde
+14;paguei quarenta reais de gasolina;40;transporte
+15;jantei num restaurante e gastei 120 reais;120;alimentação fora
+16;gastei 8 reais de passagem de metrô;8;transporte
+17;comprei um livro de 65 reais;65;educação
+18;gastei cento e vinte reais no supermercado;120;mercado
+19;paguei 33 reais e 40 de estacionamento;33.40;transporte
+20;gastei 200 reais em um show;200;lazer
+21;paguei a consulta médica de 300 reais;300;saúde
+22;comprei material escolar de 75 reais;75;educação
+23;gastei 15 reais com lanche na rua;15;alimentação fora
+24;paguei 400 reais de condomínio;400;moradia
+25;gastei quatorze reais no mercado;14;mercado
+26;gastei quarenta reais no mercado;40;mercado
+27;gastei sessenta e cinco reais no transporte;65;transporte
+28;gastei setenta reais na farmácia;70;saúde
+29;gastei 22 reais e 75 no mercado;22.75;mercado
+30;gastei 10 reais com um presente;10;outros

@@ -3,7 +3,7 @@
 # Spec: Orcamento por voz acessivel
 
 > feature: orcamento-por-voz-acessivel
-> status: em-implementacao
+> status: implementada
 
 ## Contexto
 
@@ -50,6 +50,14 @@ gravado, para que um erro de compreensão não vire um registro errado.
 - **Então** a resposta avisa que não há gasto para confirmar e pede para falar o gasto de novo
 - **E** nenhum gasto foi gravado
 
+
+#### AC-020 — A frase de confirmação é montada pelo código, não pela IA
+
+- **Dado** que a IA escolheu a ferramenta de propor um gasto de R$ 45,00 em mercado
+- **Quando** a resposta é montada
+- **Então** a pessoa ouve exatamente a frase do código, com o valor e a categoria ("Vou gravar R$ 45,00 em mercado, hoje. Posso gravar? Diga sim ou não.")
+- **E** a IA não reescreve nem resume essa frase (cada comando usa uma só chamada à IA)
+
 ### US-002 — Só gastos válidos são aceitos
 
 Como pessoa usuária, quero que valores e datas absurdos sejam recusados, para que o
@@ -83,6 +91,14 @@ orçamento não seja contaminado por um erro de interpretação da IA.
 - **Quando** a pessoa pede um gasto inválido (por exemplo, valor zero) e depois diz "sim"
 - **Então** a resposta ao "sim" avisa que não há gasto para confirmar
 - **E** o gasto de R$ 45,00 não foi gravado (um erro nunca deixa uma confirmação antiga valendo)
+
+
+#### AC-021 — "Outra" e "outras" são aceitos como a categoria outros
+
+- **Dado** que não há gasto pendente
+- **Quando** a IA pede um gasto de R$ 10,00 na categoria "outras" (ou "outra")
+- **Então** a pessoa ouve "Vou gravar R$ 10,00 em outros, hoje. Posso gravar? Diga sim ou não."
+- **E** categorias que não existem (como "cassino") continuam sendo recusadas
 
 ### US-003 — Limites por categoria com aviso
 
@@ -206,14 +222,14 @@ nada foi gravado e que posso tentar de novo.
 | ASM-007 | A qualidade da interpretação do modelo não é critério automático; é medida no experimento de 30 frases | confirmada | Cliente: "Confirmo todas (Recomendado)" (AskUserQuestion), 2026-11-22 |
 | ASM-008 | Java 25 e Spring Boot 4.1.1 funcionam com Spring AI 2.0.1 | confirmada | Build e 19 testes passaram com Java 25, Boot 4.1.1 e Spring AI 2.0.1 em 2026-11-22 |
 | ASM-009 | A pessoa usa a própria chave da OpenAI e paga o consumo | confirmada | Cliente: "Confirmo todas (Recomendado)" (AskUserQuestion), 2026-11-22 |
-| ASM-010 | O provedor gratuito (Groq) atende chat com ferramentas e transcrição em português; ele não gera voz em português, então a fala fica desligada nesse modo. Limites do plano gratuito a conferir no painel da Groq | aberta | — |
+| ASM-010 | O provedor gratuito (Groq) atende chat com ferramentas e transcrição em português; ele não gera voz em português, então a fala fica desligada nesse modo. Limites do plano gratuito a conferir no painel da Groq | confirmada | Cliente: "Sim, confirme" (chat, 2026-11-22). Teste real em 2026-11-22: chat com ferramentas e transcrição funcionaram (texto 29/30, voz 28/29). Os limites do plano gratuito da Groq não foram verificados nas páginas nem no painel |
 
 ## Perguntas em aberto
 
 | ID | Pergunta | Status | Resposta |
 |---|---|---|---|
 | Q-001 | Há um valor máximo por gasto acima do qual o assistente recusa ou pede confirmação extra? | respondida | Cliente: "Sem máximo de negócio (Recomendado)"; vale só o limite técnico do banco (AskUserQuestion), 2026-11-22 |
-| Q-002 | Qual modelo de transcrição usar (whisper-1 ou gpt-4o-mini-transcribe)? Depende do experimento | aberta | — |
+| Q-002 | Qual modelo de transcrição usar (whisper-1 ou gpt-4o-mini-transcribe)? Depende do experimento | respondida | Cliente: "feche o Q-002 com whisper-large-v3-turbo" (chat, 2026-11-22). Base: experimento por voz, 28/29 (Wilson 83% a 99%) só com este modelo; `whisper-large-v3` e `whisper-1` não foram comparados |
 | Q-003 | Editar ou apagar o último gasto por voz entra numa versão futura? | respondida | Cliente: "Fica para depois (Recomendado)"; fora desta versão (AskUserQuestion), 2026-11-22 |
 
 ## Documentos relacionados

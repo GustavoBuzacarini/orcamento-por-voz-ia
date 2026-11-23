@@ -36,8 +36,8 @@ public class FerramentasFinanceiras {
         this.resumo = resumo;
     }
 
-    @Tool(description = "Propõe um gasto para confirmação. NÃO grava. Use quando a pessoa disser que gastou, "
-            + "pagou ou comprou algo. Depois, leia a resposta e pergunte se pode gravar.")
+    @Tool(returnDirect = true, resultConverter = TextoPuroConverter.class, description = "Propõe um gasto para confirmação. NÃO grava. Use quando a pessoa disser que gastou, "
+            + "pagou ou comprou algo. O sistema fala a pergunta de confirmação; não escreva outra resposta.")
     public String proporGasto(
             @ToolParam(description = "Valor em reais, por exemplo 45.50") BigDecimal valor,
             @ToolParam(description = "Categoria: mercado, alimentação fora, transporte, moradia, saúde, educação, lazer ou outros") String categoria,
@@ -46,29 +46,29 @@ public class FerramentasFinanceiras {
         return executar(() -> registrar.propor(valor, categoria, descricao, data));
     }
 
-    @Tool(description = "Grava o gasto pendente. Use SOMENTE quando a pessoa disser sim ou confirmar.")
+    @Tool(returnDirect = true, resultConverter = TextoPuroConverter.class, description = "Grava o gasto pendente. Use SOMENTE quando a pessoa disser sim ou confirmar.")
     public String confirmarGasto() {
         return executar(confirmar::confirmar);
     }
 
-    @Tool(description = "Descarta o gasto pendente. Use quando a pessoa disser não, cancelar ou esquecer.")
+    @Tool(returnDirect = true, resultConverter = TextoPuroConverter.class, description = "Descarta o gasto pendente. Use quando a pessoa disser não, cancelar ou esquecer.")
     public String descartarGasto() {
         return executar(confirmar::descartar);
     }
 
-    @Tool(description = "Define o limite mensal de uma categoria, substituindo o anterior.")
+    @Tool(returnDirect = true, resultConverter = TextoPuroConverter.class, description = "Define o limite mensal de uma categoria, substituindo o anterior.")
     public String definirLimite(
             @ToolParam(description = "Categoria do limite") String categoria,
             @ToolParam(description = "Valor mensal em reais") BigDecimal valor) {
         return executar(() -> definirLimite.definir(categoria, valor));
     }
 
-    @Tool(description = "Informa quanto a pessoa gastou em uma categoria neste mês.")
+    @Tool(returnDirect = true, resultConverter = TextoPuroConverter.class, description = "Informa quanto a pessoa gastou em uma categoria neste mês.")
     public String totalPorCategoria(@ToolParam(description = "Categoria consultada") String categoria) {
         return executar(() -> consultar.totalPorCategoria(categoria));
     }
 
-    @Tool(description = "Resume o mês: total, total por categoria e categorias acima do limite.")
+    @Tool(returnDirect = true, resultConverter = TextoPuroConverter.class, description = "Resume o mês: total, total por categoria e categorias acima do limite.")
     public String resumoDoMes() {
         return executar(resumo::resumo);
     }

@@ -65,7 +65,7 @@
 - Arquivos: src/main/java/br/com/orcamentovoz/infrastructure/http/TextoController.java, src/main/java/br/com/orcamentovoz/infrastructure/http/ConsultaController.java
 - Notas: depende de T-007.
 
-## T-010 — README, exemplos de requisição e experimento das 30 frases [em-andamento]
+## T-010 — README, exemplos de requisição e experimento das 30 frases [concluida]
 
 - Refs: US-005, AC-013
 - Arquivos: README.md, docs/exemplos-requisicoes.md, docs/experimento-30-frases.md
@@ -82,6 +82,18 @@
 - Refs: US-002, AC-019
 - Arquivos: src/main/java/br/com/orcamentovoz/application/RegistrarGastoUseCase.java, src/test/java/br/com/orcamentovoz/PendenciaAposRecusaTest.java
 - Notas: achado em teste real (2026-11-22). A pendência é apagada antes de validar, e a transação não pode desfazer isso quando a validação falha (`noRollbackFor`).
+
+## T-013 — Ferramentas devolvem a frase do código direto à pessoa [concluida]
+
+- Refs: US-001, AC-020
+- Arquivos: src/main/java/br/com/orcamentovoz/infrastructure/ai/TextoPuroConverter.java, src/main/java/br/com/orcamentovoz/infrastructure/ai/FerramentasFinanceiras.java, src/main/resources/prompts/assistente.st, src/test/java/br/com/orcamentovoz/FraseDoCodigoTest.java, src/test/java/br/com/orcamentovoz/suporte/ChatModelFalso.java, tools/rodar-experimento.ps1
+- Notas: achado no experimento (2026-11-22): com a IA real, 6 de 30 respostas de confirmação não repetiam o valor ("Aguardando sua confirmação."). `returnDirect` e um conversor de texto puro. Também corrige o cálculo de Wilson do script.
+
+## T-014 — Aceitar "outra" e "outras" como a categoria outros [concluida]
+
+- Refs: US-002, AC-021
+- Arquivos: src/main/java/br/com/orcamentovoz/domain/Categoria.java, src/test/java/br/com/orcamentovoz/CategoriaOutrosTest.java
+- Notas: achado no experimento em modo texto (caso 30, 2026-11-22): o modelo enviou "outras" e o código recusou. Tolerância só para o gênero e o número de "outros"; as demais categorias não ganham sinônimos.
 
 ## Documentos relacionados
 

@@ -1,7 +1,24 @@
 # Experimento das 30 frases
 
-**Status: NÃO EXECUTADO.** Ele precisa de uma chave da OpenAI e de áudios gravados pela própria
-pessoa. Nenhum resultado abaixo foi inventado: a tabela está em branco de propósito.
+**Status (2026-11-22):** modo texto executado com sucesso, 29/30 (Wilson 83% a 99%), veja `resultado-experimento-texto.md`. Modo voz executado com 29 áudios do cliente (a frase 2 se perdeu): 28/29 (Wilson 83% a 99%), veja `resultado-experimento-voz.md`. O script e as 30 frases estão prontos ([`frases-experimento.csv`](frases-experimento.csv) e
+[`tools/rodar-experimento.ps1`](../tools/rodar-experimento.ps1)). Uma primeira rodada em modo texto revelou
+um defeito real do produto (a IA reescrevia a pergunta de confirmação sem dizer o valor), corrigido na
+tarefa T-013. Depois da correção, a rodada em modo texto foi refeita e é a válida. A rodada **por voz**
+precisa dos 30 áudios gravados. Nenhum resultado foi inventado: o relatório é gerado pelo script em
+`docs/resultado-experimento-texto.md` e `docs/resultado-experimento-voz.md`.
+
+## Como rodar com o script
+
+```powershell
+# 1) Sem transcrição (mede só o modelo de chat com as ferramentas)
+.\tools\rodar-experimento.ps1 -Modo texto
+
+# 2) Com transcrição: grave f01.m4a ... f30.m4a lendo as frases do CSV e aponte a pasta
+.\tools\rodar-experimento.ps1 -Modo voz -Pasta C:\caminho\dos\audios
+```
+
+O script nunca grava gasto: depois de cada frase ele diz "não" para limpar a pendência. Ele mostra a
+taxa de acerto de valor e categoria com intervalo de Wilson e a latência (p50 e p95).
 
 ## Objetivo
 

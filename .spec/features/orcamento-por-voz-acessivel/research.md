@@ -141,3 +141,68 @@ Transcrição na Groq (2026-11-22, 1 amostra): o áudio do cliente "gastei trint
 Gravador de Som do Windows), enviado a `POST /api/voz/comandos` com `whisper-large-v3-turbo`, gerou a proposta
 "R$ 30,00 em transporte, hoje" com resposta em JSON (fala desligada), em cerca de 1,7 s no total. É uma única
 amostra, sem intervalo de confiança: não prova taxa de acerto. O experimento das 30 frases segue pendente.
+
+### Achado do experimento em modo texto (2026-11-22, primeira rodada)
+
+Rodada de 30 frases por `POST /api/texto/comandos` (sem transcrição) com `openai/gpt-oss-20b` na Groq. O
+leitor automático do resultado só reconhecia frases iniciadas por "Vou gravar", então os números dessa rodada
+**não valem como taxa de acerto** (o intervalo de Wilson também saiu errado por um defeito do script, já
+corrigido). O que ela mostrou de verdade, lendo as respostas uma a uma:
+
+- Em 6 das 30 respostas, o modelo reescreveu a pergunta de confirmação **sem dizer o valor** ("Aguardando sua
+  confirmação.", "Posso gravar? Diga sim ou não."). Isso derruba a proteção principal do projeto para quem não
+  enxerga a tela. Os testes com IA falsa não pegavam isso, porque a frase era a do código.
+- "33 reais e 40" foi lido como dois números, e outras respostas citaram um limite com valor trocado.
+- Latência por comando de 1 a 13 s, com duas chamadas à IA por comando.
+
+Mitigação (spec AC-020, tarefa T-013): as ferramentas passam a devolver a frase do código **direto à pessoa**
+(`returnDirect` com um conversor de texto puro), sem o modelo reescrever. O modelo só escolhe a ferramenta e os
+argumentos. Efeito esperado: a confirmação sempre diz valor e categoria, e cai de duas para uma chamada à IA por
+comando. Provado com um modelo falso no teste `FraseDoCodigoTest`; **ainda não medido com a IA real**.
+
+### Resultado válido do experimento em modo texto (2026-11-22, depois da correção T-013)
+
+30 frases por `POST /api/texto/comandos` (sem transcrição), `openai/gpt-oss-20b` na Groq, aplicação com
+`returnDirect`. Relatório gerado pelo script: `docs/resultado-experimento-texto.md`.
+
+| Métrica | Resultado |
+|---|---|
+| Valor e categoria corretos | 29 / 30 (97%), intervalo de Wilson 95%: 83% a 99% |
+| Latência por comando (n = 29 propostas) | p50 2,7 s; p95 9,7 s |
+| Único erro | caso 30: o modelo enviou a categoria "outras" e o código recusou ("A categoria outras não existe"), listando as categorias |
+
+Limites desta medida: 30 frases escritas pela equipe, uma só rodada, um só modelo, sem ruído e **sem
+transcrição** (a frase entra como texto). Não mede o Whisper. A rodada por voz continua pendente e é a que
+decide a pergunta Q-002. Comparação com a rodada anterior: ela não é válida (leitor do script com defeito),
+então não há "antes e depois" numérico; o antes é só a leitura manual de 6 confirmações sem valor.
+
+### Resultado do experimento por voz (2026-11-22)
+
+29 áudios gravados pelo próprio cliente (m4a, 3 a 5 s, Gravador de Som do Windows, microfone do notebook),
+lendo as frases de `docs/frases-experimento.csv`; o áudio da frase 2 se perdeu e ficou **fora da conta**.
+Transcrição `whisper-large-v3-turbo`, chat `openai/gpt-oss-20b` (Groq), aplicação com `returnDirect`. Relatório
+gerado pelo script: `docs/resultado-experimento-voz.md`.
+
+| Métrica | Resultado |
+|---|---|
+| Valor e categoria corretos | 28 / 29 (97%), intervalo de Wilson 95%: 83% a 99% |
+| Categoria correta | 29 / 29 |
+| Valor correto | 28 / 29 |
+| Latência por comando (n = 29) | p50 1,2 s; p95 7,9 s |
+| Único erro | frase 12, "paguei 250 reais de aluguel": entendido R$ 200,50. A confirmação por voz diria "R$ 200,50" antes de gravar |
+
+Interpretação do erro (hipótese, sem prova): o número "duzentos e cinquenta" foi lido como "200 e 50" (reais e
+centavos). O prompt ensina "doze e noventa" como 12,90, e essa regra pode ter induzido a leitura. O script não
+guarda a transcrição, então não dá para separar erro do Whisper de erro do modelo de chat.
+
+Limites desta medida: uma voz (a do cliente), um microfone, ambiente silencioso, 29 frases lidas de uma lista
+(leitura, não fala espontânea), uma rodada, um modelo de transcrição. Com n = 29 o intervalo é largo. Não compara
+`whisper-large-v3` com `whisper-large-v3-turbo`, e não compara com o `whisper-1` da OpenAI, então a pergunta
+Q-002 (qual modelo de transcrição) só tem evidência para o `whisper-large-v3-turbo`.
+
+### Decisão Q-002 (2026-11-22)
+
+Resposta literal do cliente no chat: "feche o Q-002 com whisper-large-v3-turbo". Escolhido para a transcrição com
+a Groq (`AI_TRANSCRIPTION_MODEL=whisper-large-v3-turbo`, que já é o valor do `.env.example`). Evidência: 28/29
+no experimento por voz. Não há comparação com `whisper-large-v3` nem com `whisper-1`; a decisão pode ser
+revista se um novo experimento mostrar diferença.

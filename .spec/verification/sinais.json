@@ -293,10 +293,10 @@
       "codigo": "Q_ABERTA",
       "feature": "orcamento-por-voz-acessivel",
       "ref": "Q-002",
-      "ocorrencias": 9,
+      "ocorrencias": 14,
       "primeiraVez": "2026-11-22T20:31:40.880Z",
-      "ultimaVez": "2026-11-22T22:05:54.481Z",
-      "gitRev": "55f3e33"
+      "ultimaVez": "2026-11-22T23:48:13.334Z",
+      "gitRev": "99b2608"
     },
     "Q_ABERTA::orcamento-por-voz-acessivel::Q-003": {
       "codigo": "Q_ABERTA",
